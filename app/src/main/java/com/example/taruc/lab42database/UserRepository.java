@@ -25,6 +25,9 @@ public class UserRepository {
     public void insertUser(User user){
         new insertAsyncTask(userDao).execute(user);
     }
+    public void deleteAll(User user){
+
+    }
 
     //<Param, Progress, Results>
     private static class insertAsyncTask extends AsyncTask<User, Void, Void> {
@@ -39,5 +42,25 @@ public class UserRepository {
             userDao.insertUser(users[0]);
             return null;
         }
+
+        private static class deleteUserAsyncTask extends AsyncTask<User, Void, Void> {
+            private UserDao userAsyncTaskDao;
+
+            deleteUserAsyncTask(UserDao dao) {
+                userAsyncTaskDao = dao;
+            }
+
+            @Override
+            protected Void doInBackground(final User... params) {
+                userAsyncTaskDao.deleteUser(params[0]);
+                return null;
+            }
+        }
+
+
+        public void deleteUser(User user)  {
+            new deleteUserAsyncTask(userDao).execute(user);
+        }
     }
+
 }

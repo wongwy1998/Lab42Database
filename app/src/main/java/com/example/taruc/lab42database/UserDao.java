@@ -19,6 +19,7 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE phone=:phone")
     List<User> findUserByPhone(String phone);
 
+
     @Insert
     void insertUser(User user);
 

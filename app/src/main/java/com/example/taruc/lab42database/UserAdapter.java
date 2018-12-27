@@ -62,4 +62,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         userList = users;
         notifyDataSetChanged();
     }
+
+    public User getUserAtPosition (int position) {
+        return userList.get(position);
+    }
 }
